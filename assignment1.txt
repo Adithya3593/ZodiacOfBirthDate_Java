@@ -1,0 +1,108 @@
+Homework #1
+COSC 6353 / 4353
+
+Due Date: February 10, 2017 23:59:59
+
+Description: 
+In this homework we will come up with initial design for a program. 
+We will not be writing any code in this homework, but only looking at some initial design ideas.
+
+Design an application that will perform the following actions:
+1.	Prompt the user and read in user date of birth in (mm/dd/yyyy) format.
+	- Program checks if date is in correct format. Provides proper message if incorrect format is entered and repeats 1.
+	- If user enters wrong data for three consecutive times then system exits with proper notification.
+	
+2.	System prints following summary from the date of birth:
+	- What day of the week they were born? e.g. "You were born on a Friday."
+	- Their Zodiac sign. e.g. "Your zodiac sign is capricorn."
+	
+
+Answer these questions:
+
+1.	How would you design this program?
+
+------------------------------
+MODULE DESCRIPTION & FLOWCHART:
+------------------------------
+The design of the program will be divided into following modules:
+
+Module 1:  Get User Input values:
+	In this module, we will design a GUI(TextField, Label, Button) which prompts the user to enter the date of birth as an input value.
+	The system will request the user to enter the day, month and the year in MM/DD/YYYY format which has been specified in the requirement.
+	This input date will be sent to next module for further processing.
+  
+Module 2:  Check Date Format:
+	In this module, the user input date value will be checked for its MM/DD/YYYY format as follows:
+		i) The input date string should be of length 10.
+		ii) The day, month & year should be of type integer.
+		iii) There should be '/' twice. One separating the month & day and the second separating the day & year.
+	If the user input date satisfies all the above checks, then the date is split into day, month & year which will be stored as integers for further validation.
+	On the other hand, if any one of the above condition fails, then the control moves to termination module with an error message "Invalid Date Format".
+
+Module 3:  Validating User Input Date:
+	In this module, the year, month & day are validated independently,
+		i) To check whether the user entered year is not greater than 2017.
+		ii) To check whether the month entered is within 1 and 12.
+		iii) To check whether the day entered is between 1 and 31 for the months January, March, May, July, August, October & December. 
+		iv) To check whether the day entered is between 1 and 30 for the months April, June, September, November.
+		v) A check for Leap Year will also be performed in this module.
+	If all the above conditions are satisfied, then the 'Output Module' will display the result to the user.
+	Otherwise, the system control moves to termination module with an error message "Invalid Input Date".
+
+Module 4:  Check for Termination:
+	This module will be invoked, if date format_check or date validation_check fails. 
+	In this module, there is a counter which will be increased by 1, for each incorrect date given by the user. But the counter will check only for consecutive incorrect entries.
+	If an incorrect entry is followed by a correct one, then the counter will be reset to '0'.
+	If the user has entered 3 consecutive incorrect data, the program will be terminated. 
+	Otherwise, the user will be prompted to re-enter the date with an appropriate message.
+
+Module 5:  Print User Output:
+	This module will be divided into 2 sub modules as follows:
+		i)  Day of the Week: This sub module retrieves the day of week corresponding to the user input date using java libraries such as 'Calendar' & 'Date'.
+		ii) Zodiac Sign: This sub module retrieves the zodiac sign corresponding to the user input date.
+	An information box with Zodiac Sign & Day of Week is prompted to the user as program output.
+
+----------
+FLOWCHART: It is in the SVN repository. Please refer to the PDF Document also.
+----------
+
+===========================================================================================================================================================================================
+
+2.	Discuss what programming language you would use.
+
+	We have planned to implement the given application using JAVA programming language.
+
+===========================================================================================================================================================================================
+
+3.	How you'd structure the program, what libraries you'd use?
+	
+--------------------------------------	
+Libraries required for Date Functions:
+--------------------------------------
+	Calendar         - This is an abstract class that provides methods for converting between a specific instant in time and a set of calendar fields 
+		           such as YEAR, MONTH, DAY_OF_MONTH, HOUR, so on, and for manipulating the calendar fields, such as getting the date of the next week.
+	Date 	 	 - This class represents a specific instant in time, with millisecond precision.
+	SimpleDateFormat - This is a concrete class for formatting and parsing dates in a locale-sensitive manner. 
+			   It allows for formatting (date -> text), parsing (text -> date), and normalization.
+---------------------------
+Libraries required for GUI:
+---------------------------	
+	GridLayout 	- Creates a grid with the specified number of rows and columns.
+	ActionListener 	- The listener interface for receiving action events. The class which processes the ActionEvent should implement this ActionListener interface. 
+			  When the action event occurs, that object's actionPerformed method is invoked.
+	ActionEvent 	- A semantic event which indicates that a component-defined action occurred. The event is passed to every ActionListener object that registered to 
+			  receive such events using the component's addActionListener method.
+	JButton 	- An implementation of a "push" button.
+	JFrame 		- A frame, implemented as an instance of the JFrame class, is a window that has decorations such as a border, a title, and supports button components 
+			  that close or iconify the window.
+	JLabel 		- A display area for a short text string or an image, or both. 
+	JPanel 		- It is a generic lightweight container. 
+	JTextField 	- It is a component that allows the editing of a single line of text.
+	JOptionPane 	- It makes easy to pop up a standard dialog box that prompts users for a value or informs them of something.
+
+-----------------------------
+UML DIAGRAM - CLASS DIAGRAM : It is in the SVN repository. Please refer to the PDF Document also.
+-----------------------------
+
+
+NOTE: Include a separate file (may be a scan of hand drawn picture if you like, or a PDF, tiff, word document, etc.) which shows a UML diagram of your design.
